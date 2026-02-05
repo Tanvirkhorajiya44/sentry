@@ -1,0 +1,46 @@
+name: Full CI/CD AWS
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # FRONTEND BUILD
+      - name: Build React
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      # DEPLOY FRONTEND TO S3
+      - name: Deploy Frontend to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: frontend-senetry 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: us-east-1
+          SOURCE_DIR: frontend/dist
+
+      # DEPLOY BACKEND TO EC2
+      - name: Deploy Backend to EC2
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            cd sentry/backend
+            git pull origin main
+            npm install
+            pm2 restart all || pm2 start index.js
+
