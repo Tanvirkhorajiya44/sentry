@@ -1,4 +1,4 @@
-`import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   TextField, Button, MenuItem, Card, CardContent, Typography, Stack, Snackbar, Alert, 
   Box, Divider, InputAdornment, Paper, Grid
@@ -291,7 +291,7 @@ export default function AddProductForm() {
                   }}
                 >
                   {godowns.map((g, index) => (
-                    <MenuItem key={g.id || `godown-${index}`} value={g.name}>
+                    <MenuItem key={g.id ?? index} value={g.name}>
                       {g.name}
                     </MenuItem>
                   ))}
@@ -374,4 +374,3 @@ export default function AddProductForm() {
     </Box>
   );
 }
-`
