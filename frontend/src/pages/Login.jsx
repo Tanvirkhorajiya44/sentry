@@ -24,7 +24,7 @@ export default function Login({ setLoggedIn }) {
     setLoading(true);
     
     try {
-      const res = await axios.post('http://localhost:5000/api/login', { password });
+      const res = await axios.post('http://54.167.21.79:5000/api/login', { password });
       if (res.data.success) {
         localStorage.setItem('loggedIn', 'true');
         setLoggedIn(true);

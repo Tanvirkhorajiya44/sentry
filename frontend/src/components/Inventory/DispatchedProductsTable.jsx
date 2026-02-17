@@ -29,7 +29,7 @@ export default function DispatchedProductsTable() {
   const fetchDispatchedProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/inventory/dispatched');
+      const response = await axios.get('http://54.167.21.79:5000/api/inventory/dispatched');
       setDispatchedProducts(response.data.dispatchedProducts || []);
     } catch (err) {
       console.error('Error fetching dispatched products:', err);

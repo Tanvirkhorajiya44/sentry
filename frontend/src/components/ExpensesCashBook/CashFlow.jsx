@@ -13,7 +13,7 @@ export default function CashFlow() {
 
   const fetchExpenses = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/expenses/cashflow');
+      const res = await axios.get('http://54.167.21.79:5000/api/expenses/cashflow');
       setExpenses(res.data.cashflow || []);
       const total = res.data.cashflow?.reduce((sum, exp) => sum + parseFloat(exp.amount || 0), 0) || 0;
       setTotalExpenses(total);

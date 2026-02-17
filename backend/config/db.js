@@ -1,10 +1,10 @@
 const mysql = require('mysql2');
 
 const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '', // Set your MySQL root password
-  database: 'wisdom',
+  host: 'senetry.ci3022iksyf7.us-east-1.rds.amazonaws.com',
+  user: 'admin',
+  password: 'mamasenetry$#9337', // Set your MySQL root password
+  database: 'senetry',
   queueLimit: 0
 });
 

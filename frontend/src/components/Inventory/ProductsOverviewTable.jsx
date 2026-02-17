@@ -62,7 +62,7 @@ export default function ProductsOverviewTable() {
 
   const fetchGodowns = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/godown/list');
+      const response = await axios.get('http://54.167.21.79:5000/api/godown/list');
       setGodowns(response.data.locations || []);
     } catch (err) {
       console.error('Error fetching godowns:', err);
@@ -72,7 +72,7 @@ export default function ProductsOverviewTable() {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('http://localhost:5000/api/inventory/list');
+      const response = await axios.get('http://54.167.21.79:5000/api/inventory/list');
       setProducts(response.data.products || []);
     } catch (err) {
       console.error('Error fetching products:', err);
@@ -153,7 +153,7 @@ export default function ProductsOverviewTable() {
   const handleDeleteProduct = async (product) => {
     if (window.confirm(`Are you sure you want to delete "${product.product_name}"?`)) {
       try {
-        await axios.delete(`http://localhost:5000/api/inventory/delete/${product.id}`);
+        await axios.delete(`http://54.167.21.79:5000/api/inventory/delete/${product.id}`);
         setToast({ open: true, message: 'PRODUCT DELETED SUCCESSFULLY!', severity: 'success' });
         fetchProducts(); // Refresh the list
       } catch (err) {
@@ -172,7 +172,7 @@ export default function ProductsOverviewTable() {
 
   const handleUpdateProduct = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/inventory/update/${editProduct.id}`, editForm);
+      await axios.put(`http://54.167.21.79:5000/api/inventory/update/${editProduct.id}`, editForm);
       setToast({ open: true, message: 'PRODUCT UPDATED SUCCESSFULLY!', severity: 'success' });
       setEditDialogOpen(false);
       fetchProducts(); // Refresh the list

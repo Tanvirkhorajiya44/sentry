@@ -16,7 +16,7 @@ export default function DispatchProduct() {
 
   useEffect(() => {
     // Fetch available products for dropdown
-    axios.get('http://localhost:5000/api/reports/stock').then(res => {
+    axios.get('http://54.167.21.79:5000/api/reports/stock').then(res => {
       const stockItems = res.data.stock || [];
       const uniqueProducts = [...new Map(stockItems.map(item => [item.product, item])).values()];
       setProducts(uniqueProducts);
@@ -27,7 +27,7 @@ export default function DispatchProduct() {
     e.preventDefault();
     setMsg({ open: false, text: '', severity: 'success' });
     try {
-      await axios.post('http://localhost:5000/api/inventory/dispatch', { name });
+      await axios.post('http://54.167.21.79:5000/api/inventory/dispatch', { name });
       setMsg({ open: true, text: 'Product dispatched successfully!', severity: 'success' });
       setName('');
     } catch {

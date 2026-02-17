@@ -15,13 +15,13 @@ export default function ProfitLoss() {
 
   const fetchProfitLoss = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reports/profitloss');
+      const res = await axios.get('http://54.167.21.79:5000/api/reports/profitloss');
       setProfitData(res.data);
       
       // Fetch individual totals for breakdown
-      const salesRes = await axios.get('http://localhost:5000/api/reports/sales');
-      const purchaseRes = await axios.get('http://localhost:5000/api/reports/purchase');
-      const expenseRes = await axios.get('http://localhost:5000/api/expenses/cashflow');
+      const salesRes = await axios.get('http://54.167.21.79:5000/api/reports/sales');
+      const purchaseRes = await axios.get('http://54.167.21.79:5000/api/reports/purchase');
+      const expenseRes = await axios.get('http://54.167.21.79:5000/api/expenses/cashflow');
       
       const sales = salesRes.data.sales?.reduce((sum, sale) => sum + (parseFloat(sale.quantity || 0) * parseFloat(sale.rate || 0)), 0) || 0;
       const purchases = purchaseRes.data.purchases?.reduce((sum, purchase) => sum + (parseFloat(purchase.quantity || 0) * parseFloat(purchase.rate || 0)), 0) || 0;

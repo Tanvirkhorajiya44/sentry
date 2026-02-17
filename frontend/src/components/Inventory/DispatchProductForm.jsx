@@ -27,9 +27,9 @@ export default function DispatchProductForm() {
   const [toast, setToast] = useState({ open: false, message: '', severity: 'success' });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/godown/list').then(res => setGodowns(res.data.locations || []));
-    axios.get('http://localhost:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
-    axios.get('http://localhost:5000/api/reports/stock').then(res => {
+    axios.get('http://54.167.21.79:5000/api/godown/list').then(res => setGodowns(res.data.locations || []));
+    axios.get('http://54.167.21.79:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
+    axios.get('http://54.167.21.79:5000/api/reports/stock').then(res => {
       const stockItems = res.data.stock || [];
       const uniqueProducts = [...new Map(stockItems.map(item => [item.product, item])).values()];
       setProducts(uniqueProducts);
@@ -48,7 +48,7 @@ export default function DispatchProductForm() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/inventory/dispatch', form);
+      await axios.post('http://54.167.21.79:5000/api/inventory/dispatch', form);
       setToast({ open: true, message: 'Product dispatched successfully!', severity: 'success' });
       setForm({ itemName: '', quantity: '', rate: '', date: '', batch: '', location: '', party: '' });
       // Notify other screens to refresh without a full page reload

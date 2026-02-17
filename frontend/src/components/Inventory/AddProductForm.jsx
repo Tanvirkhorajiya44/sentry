@@ -25,7 +25,7 @@ export default function AddProductForm() {
   const [toast, setToast] = useState({ open: false, message: '', severity: 'success' });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/godown/list').then(res => setGodowns(res.data.locations || []));
+    axios.get('http://54.167.21.79:5000/api/godown/list').then(res => setGodowns(res.data.locations || []));
   }, []);
 
   const handleChange = e => {
@@ -40,7 +40,7 @@ export default function AddProductForm() {
     }
     setLoading(true);
     try {
-      await axios.post('http://localhost:5000/api/inventory/add', form);
+      await axios.post('http://54.167.21.79:5000/api/inventory/add', form);
       setToast({ open: true, message: 'Product added successfully!', severity: 'success' });
       setForm({ itemName: '', quantity: '', rate: '', date: '', batch: '', location: '', party: '' });
     } catch {

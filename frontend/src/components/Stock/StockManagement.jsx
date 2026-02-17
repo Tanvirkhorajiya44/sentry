@@ -19,7 +19,7 @@ export default function StockManagement() {
   const [msg, setMsg] = useState({ open: false, text: '', severity: 'success' });
 
   const fetchStock = () => {
-    axios.get('http://localhost:5000/api/stock/list').then(res => setStock(res.data.stock || []));
+    axios.get('http://54.167.21.79:5000/api/stock/list').then(res => setStock(res.data.stock || []));
   };
 
   useEffect(() => {
@@ -46,7 +46,7 @@ export default function StockManagement() {
   const handleDelete = async (id) => {
     if (window.confirm('ARE YOU SURE YOU WANT TO DELETE THIS STOCK ITEM?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/stock/delete/${id}`);
+        await axios.delete(`http://54.167.21.79:5000/api/stock/delete/${id}`);
         setMsg({ open: true, text: 'STOCK ITEM DELETED!', severity: 'success' });
         fetchStock();
       } catch {
@@ -58,10 +58,10 @@ export default function StockManagement() {
   const handleSubmit = async () => {
     try {
       if (editing) {
-        await axios.put(`http://localhost:5000/api/stock/update/${editing.id}`, form);
+        await axios.put(`http://54.167.21.79:5000/api/stock/update/${editing.id}`, form);
         setMsg({ open: true, text: 'STOCK UPDATED!', severity: 'success' });
       } else {
-        await axios.post('http://localhost:5000/api/stock/add', form);
+        await axios.post('http://54.167.21.79:5000/api/stock/add', form);
         setMsg({ open: true, text: 'STOCK ADDED!', severity: 'success' });
       }
       setOpen(false);
