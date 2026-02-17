@@ -17,18 +17,18 @@ export default function PartyManagement() {
   const [msg, setMsg] = useState({ open: false, text: '', severity: 'success' });
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
-    axios.get('http://localhost:5000/api/customersuppliers/supplier/list').then(res => setSuppliers(res.data.suppliers || []));
+    axios.get('http://54.167.21.79:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
+    axios.get('http://54.167.21.79:5000/api/customersuppliers/supplier/list').then(res => setSuppliers(res.data.suppliers || []));
   }, [msg.open]);
 
   const handleAdd = async () => {
     if (!name) return;
     try {
       if (tab === 0) {
-        await axios.post('http://localhost:5000/api/customersuppliers/customer/add', { name });
+        await axios.post('http://54.167.21.79:5000/api/customersuppliers/customer/add', { name });
         setMsg({ open: true, text: 'Customer added successfully!', severity: 'success' });
       } else {
-        await axios.post('http://localhost:5000/api/customersuppliers/supplier/add', { name });
+        await axios.post('http://54.167.21.79:5000/api/customersuppliers/supplier/add', { name });
         setMsg({ open: true, text: 'Supplier added successfully!', severity: 'success' });
       }
       setName('');

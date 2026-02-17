@@ -11,7 +11,11 @@ const reportsRoutes = require('./routes/reports');
 const stockRoutes = require('./routes/stock');
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "http://frontend-senetry.s3-website-us-east-1.amazonaws.com",   // for testing
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(bodyParser.json());
 
 // Simple password-only login

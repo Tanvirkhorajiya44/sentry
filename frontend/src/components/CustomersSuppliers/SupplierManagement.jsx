@@ -15,7 +15,7 @@ export default function SupplierManagement() {
   const [editing, setEditing] = useState(null);
 
   const fetchSuppliers = () => {
-    axios.get('http://localhost:5000/api/customersuppliers/supplier/list').then(res => setSuppliers(res.data.suppliers || []));
+    axios.get('http://54.167.21.79:5000/api/customersuppliers/supplier/list').then(res => setSuppliers(res.data.suppliers || []));
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function SupplierManagement() {
     e.preventDefault();
     setMsg({ open: false, text: '', severity: 'success' });
     try {
-      await axios.post('http://localhost:5000/api/customersuppliers/supplier/add', { name });
+      await axios.post('http://54.167.21.79:5000/api/customersuppliers/supplier/add', { name });
       setMsg({ open: true, text: 'Supplier added successfully!', severity: 'success' });
       setName('');
       setOpen(false);
@@ -44,7 +44,7 @@ export default function SupplierManagement() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/customersuppliers/supplier/update/${editing.id}`, { name });
+      await axios.put(`http://54.167.21.79:5000/api/customersuppliers/supplier/update/${editing.id}`, { name });
       setMsg({ open: true, text: 'Supplier updated successfully!', severity: 'success' });
       setName('');
       setOpen(false);
@@ -58,7 +58,7 @@ export default function SupplierManagement() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this supplier?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/customersuppliers/supplier/delete/${id}`);
+        await axios.delete(`http://54.167.21.79:5000/api/customersuppliers/supplier/delete/${id}`);
         setMsg({ open: true, text: 'Supplier deleted successfully!', severity: 'success' });
         fetchSuppliers();
       } catch {

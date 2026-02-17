@@ -13,7 +13,7 @@ export default function StockReport() {
 
   const fetchStock = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reports/stock');
+      const res = await axios.get('http://54.167.21.79:5000/api/reports/stock');
       setStock(res.data.stock || []);
       const total = res.data.stock?.reduce((sum, item) => sum + parseInt(item.quantity || 0), 0) || 0;
       setTotalItems(total);

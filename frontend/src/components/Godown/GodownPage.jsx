@@ -38,11 +38,11 @@ export default function GodownPage() {
   const [transactions, setTransactions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/godown/stock").then((res) => {
+    axios.get("http://54.167.21.79:5000/api/godown/stock").then((res) => {
       setStock(res.data.stock.filter((s) => s.location === selected));
     });
     axios
-      .get("http://localhost:5000/api/godown/transactions", {
+      .get("http://54.167.21.79:5000/api/godown/transactions", {
         params: { location: selected },
       })
       .then((res) => setTransactions(res.data.transactions));
@@ -52,12 +52,12 @@ export default function GodownPage() {
   useEffect(() => {
     const handler = (e) => {
       const location = e?.detail?.location || selected;
-      axios.get("http://localhost:5000/api/godown/stock", { params: { location } }).then((res) => {
+      axios.get("http://54.167.21.79:5000/api/godown/stock", { params: { location } }).then((res) => {
         const items = res.data.stock.filter((s) => s.location === location);
         setStock(items);
       });
       axios
-        .get("http://localhost:5000/api/godown/transactions", { params: { location } })
+        .get("http://54.167.21.79:5000/api/godown/transactions", { params: { location } })
         .then((res) => setTransactions(res.data.transactions));
     };
     window.addEventListener('refresh:godown', handler);

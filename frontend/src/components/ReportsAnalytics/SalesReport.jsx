@@ -13,7 +13,7 @@ export default function SalesReport() {
 
   const fetchSales = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reports/sales');
+      const res = await axios.get('http://54.167.21.79:5000/api/reports/sales');
       setSales(res.data.sales || []);
       const total = res.data.sales?.reduce((sum, sale) => sum + (parseFloat(sale.quantity || 0) * parseFloat(sale.rate || 0)), 0) || 0;
       setTotalValue(total);

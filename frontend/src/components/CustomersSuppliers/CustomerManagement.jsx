@@ -15,7 +15,7 @@ export default function CustomerManagement() {
   const [editing, setEditing] = useState(null);
 
   const fetchCustomers = () => {
-    axios.get('http://localhost:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
+    axios.get('http://54.167.21.79:5000/api/customersuppliers/customer/list').then(res => setCustomers(res.data.customers || []));
   };
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function CustomerManagement() {
     e.preventDefault();
     setMsg({ open: false, text: '', severity: 'success' });
     try {
-      await axios.post('http://localhost:5000/api/customersuppliers/customer/add', { name });
+      await axios.post('http://54.167.21.79:5000/api/customersuppliers/customer/add', { name });
       setMsg({ open: true, text: 'Customer added successfully!', severity: 'success' });
       setName('');
       setOpen(false);
@@ -44,7 +44,7 @@ export default function CustomerManagement() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/customersuppliers/customer/update/${editing.id}`, { name });
+      await axios.put(`http://54.167.21.79:5000/api/customersuppliers/customer/update/${editing.id}`, { name });
       setMsg({ open: true, text: 'Customer updated successfully!', severity: 'success' });
       setName('');
       setOpen(false);
@@ -58,7 +58,7 @@ export default function CustomerManagement() {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this customer?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/customersuppliers/customer/delete/${id}`);
+        await axios.delete(`http://54.167.21.79:5000/api/customersuppliers/customer/delete/${id}`);
         setMsg({ open: true, text: 'Customer deleted successfully!', severity: 'success' });
         fetchCustomers();
       } catch {

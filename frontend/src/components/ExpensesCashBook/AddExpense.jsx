@@ -30,7 +30,7 @@ export default function AddExpense() {
     }
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:5000/api/expenses/add', form);
+      const response = await axios.post('http://54.167.21.79:5000/api/expenses/add', form);
       setToast({ open: true, message: 'Expense added successfully!', severity: 'success' });
       setForm({ description: '', amount: '', date: '' });
     } catch (error) {

@@ -13,7 +13,7 @@ export default function PurchaseReport() {
 
   const fetchPurchases = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/reports/purchase');
+      const res = await axios.get('http://54.167.21.79:5000/api/reports/purchase');
       setPurchases(res.data.purchases || []);
       const total = res.data.purchases?.reduce((sum, purchase) => sum + (parseFloat(purchase.quantity || 0) * parseFloat(purchase.rate || 0)), 0) || 0;
       setTotalValue(total);

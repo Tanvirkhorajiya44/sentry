@@ -8,7 +8,7 @@ export default function ManageLocations() {
     e.preventDefault();
     setMsg('');
     try {
-      await axios.post('http://localhost:5000/api/godown/add', { location });
+      await axios.post('http://54.167.21.79:5000/api/godown/add', { location });
       setMsg('Location added!');
       setLocation('');
     } catch {
